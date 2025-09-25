@@ -1,0 +1,21 @@
+# Entornos virtuales
+venv/
+.venv/
+env/
+.env
+
+# Modelos de Rasa
+models/
+
+# Archivos de caché y logs de Rasa
+.rasa/
+results/
+__pycache__/
+*.pyc
+
+# Archivos de base de datos de seguimiento
+rasa.db
+tracker.db
+
+# Otros
+.DS_Store

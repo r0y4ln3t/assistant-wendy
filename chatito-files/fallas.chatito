@@ -1,0 +1,23 @@
+%[reportar_falla_internet]
+    @[servicio] @[problema]
+    @[servicio] @[problema] en mi @[dispositivo]
+    No @[tener] @[servicio]
+
+@[servicio]('synonym': 'internet')
+    internet
+    conexión
+    red
+    servicio de wifi
+@[problema]
+    no funciona
+    está caído
+    está muy lento
+    está intermitente
+@[dispositivo]
+    computador
+    celular
+    tele
+    tablet
+@[tener]
+    tengo
+    hay

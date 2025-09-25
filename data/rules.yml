@@ -1,0 +1,278 @@
+version: "3.1"
+
+rules:
+
+- rule: Saludar y mostrar menú
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_main_menu
+
+- rule: Despedida
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Volver al menú principal
+  steps:
+  - intent: return_to_main_menu
+  - action: utter_main_menu
+
+# --- REGLAS DEL FLUJO 1: REPORTE DE NOVEDAD ---
+- rule: Usuario selecciona reportar novedad
+  steps:
+  - intent: select_report_issue
+  - action: utter_issue_submenu
+
+- rule: Usuario selecciona que no tiene internet
+  steps:
+  - intent: select_no_internet
+  - action: utter_ask_modem_lights
+
+- rule: Usuario selecciona que el internet está lento
+  steps:
+  - intent: select_navigation_slow
+  - action: utter_solution_slow_navigation
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario responde que el módem NO tiene luces
+  steps:
+  - intent: select_modem_lights_no
+  - action: utter_solution_modem_off
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario responde que el módem SI tiene luces
+  steps:
+  - intent: select_modem_lights_yes
+  - action: utter_ask_pon_los_light
+
+- rule: Usuario responde que la luz PON está parpadeando/roja
+  steps:
+  - intent: select_pon_light_blinking
+  - action: utter_solution_pon_blinking
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario responde que la luz PON está apagada
+  steps:
+  - intent: select_pon_light_off
+  - action: utter_solution_pon_off
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario responde que la luz PON está fija
+  steps:
+  - intent: select_pon_light_fixed
+  - action: utter_ask_internet_light
+
+- rule: Usuario responde que la luz Internet está apagada/roja
+  steps:
+  - intent: select_internet_light_off
+  - action: utter_solution_internet_off
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario responde que la luz Internet está en verde
+  steps:
+  - intent: select_internet_light_green
+  - action: utter_ask_navigation_status_after_lights
+
+- rule: Usuario responde que el internet sigue mal tras reinicio
+  steps:
+  - intent: select_navigation_still_bad
+  - action: utter_solution_navigation_still_bad
+  - action: utter_propose_options_after_answer
+
+# --- REGLAS DEL FLUJO 2: PLANES Y PRODUCTOS ---
+- rule: Usuario quiere conocer planes
+  steps:
+  - intent: select_know_plans
+  - action: utter_plans_menu
+
+- rule: Usuario selecciona Plan Hogar
+  steps:
+  - intent: select_plan_hogar
+  - action: utter_explain_plan_hogar
+  - action: utter_propose_contact_advisor
+
+- rule: Usuario selecciona Plan Avanzado
+  steps:
+  - intent: select_plan_avanzado
+  - action: utter_explain_plan_avanzado
+  - action: utter_propose_contact_advisor
+
+- rule: Usuario selecciona Plan Premium
+  steps:
+  - intent: select_plan_premium
+  - action: utter_explain_plan_premium
+  - action: utter_propose_contact_advisor
+
+- rule: Usuario selecciona Plan Emprendedor
+  steps:
+  - intent: select_plan_emprendedor
+  - action: utter_explain_plan_emprendedor
+  - action: utter_propose_contact_advisor
+
+- rule: Usuario selecciona contactar asesor
+  steps:
+  - intent: select_contact_advisor
+  - action: utter_contact_advisor_info
+  - action: utter_propose_options_after_answer
+
+- rule: Responder a pregunta sobre precios de planes
+  steps:
+  - intent: ask_plan_prices
+  - action: utter_answer_plan_prices
+  - action: utter_propose_options_after_answer
+
+- rule: Recomendar plan para negocios
+  steps:
+  - intent: ask_recommend_plan_business
+  - action: utter_recommend_plan_business
+  - action: utter_propose_contact_advisor
+
+- rule: Explicar qué son las megas dedicadas
+  steps:
+  - intent: ask_what_is_dedicated_megas
+  - action: utter_explain_dedicated_megas
+  - action: utter_propose_contact_advisor
+
+- rule: Recomendar plan para gaming
+  steps:
+  - intent: ask_recommend_plan_gaming
+  - action: utter_recommend_plan_gaming
+  - action: utter_propose_contact_advisor
+
+- rule: Responder a pregunta sobre Look-Out
+  steps:
+  - intent: ask_what_is_lookout
+  - action: utter_explain_what_is_lookout
+  - action: utter_propose_contact_advisor
+
+# --- REGLAS DEL FLUJO 3: CARTERA Y PAGOS ---
+- rule: Usuario selecciona Cartera
+  steps:
+  - intent: select_cartera
+  - action: utter_cartera_menu
+
+- rule: Usuario pregunta fecha de pago
+  steps:
+  - intent: select_payment_date
+  - action: utter_answer_payment_date
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario pregunta fecha de corte
+  steps:
+  - intent: select_cutoff_date
+  - action: utter_answer_cutoff_date
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario pregunta por métodos de pago
+  steps:
+  - intent: select_payment_methods
+  - action: utter_ask_payment_methods
+
+- rule: Usuario selecciona método SuperGIROS
+  steps:
+  - intent: select_method_supergiros
+  - action: utter_answer_supergiros
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario selecciona método Efecty
+  steps:
+  - intent: select_method_efecty
+  - action: utter_answer_efecty
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario selecciona método PSE
+  steps:
+  - intent: select_method_pse
+  - action: utter_answer_pse
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario pregunta por descuentos
+  steps:
+  - intent: select_discounts
+  - action: utter_answer_discounts
+  - action: utter_propose_options_after_answer
+
+- rule: Responder a pregunta general sobre métodos de pago
+  steps:
+  - intent: ask_payment_methods_general
+  - action: utter_ask_payment_methods_general
+  - action: utter_propose_options_after_answer
+
+- rule: Responder a pregunta sobre datos para pagar
+  steps:
+  - intent: ask_payment_data
+  - action: utter_explain_payment_data
+  - action: utter_propose_options_after_answer
+
+# --- REGLAS DEL FLUJO 4: CONTRATO, PROCEDIMIENTOS Y FAQ ---
+- rule: Usuario selecciona cambiar contraseña
+  steps:
+  - intent: select_change_password
+  - action: utter_answer_change_password
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario selecciona FAQ
+  steps:
+  - intent: select_faq
+  - action: utter_faq_menu
+
+- rule: Usuario selecciona FAQ - Horario de oficina
+  steps:
+  - intent: select_faq_office_hours
+  - action: utter_answer_faq_office_hours
+  - action: utter_propose_options_after_answer
+
+- rule: Usuario selecciona FAQ - Ubicación de oficina
+  steps:
+  - intent: select_faq_office_location
+  - action: utter_answer_faq_office_location
+  - action: utter_propose_options_after_answer
+
+- rule: Responder a pregunta sobre renovación de contrato
+  steps:
+  - intent: ask_contract_renewal
+  - action: utter_explain_contract_renewal
+  - action: utter_propose_options_after_answer
+
+- rule: Responder a pregunta sobre terminar contrato
+  steps:
+  - intent: ask_terminate_contract
+  - action: utter_explain_terminate_contract
+  - action: utter_propose_options_after_answer
+
+- rule: Responder a pregunta sobre silencio administrativo
+  steps:
+  - intent: ask_silencio_administrativo
+  - action: utter_explain_silencio_administrativo
+  - action: utter_propose_options_after_answer
+
+- rule: Responder a pregunta sobre cesión de contrato
+  steps:
+  - intent: ask_contract_cession
+  - action: utter_explain_contract_cession
+  - action: utter_propose_options_after_answer
+
+- rule: Responder a queja sobre demora en la instalación
+  steps:
+  - intent: ask_installation_delay
+  - action: utter_explain_installation_delay
+  - action: utter_propose_options_after_answer
+
+- rule: Responder a pregunta sobre devolución de equipos
+  steps:
+  - intent: ask_equipment_return
+  - action: utter_explain_equipment_return
+  - action: utter_propose_options_after_answer
+
+- rule: Explicar cómo hacer un test de velocidad
+  steps:
+  - intent: ask_how_to_speed_test
+  - action: utter_explain_how_to_speed_test
+  - action: utter_propose_options_after_answer
+
+- rule: Explicar cómo trasladar el servicio
+  steps:
+  - intent: ask_service_relocation
+  - action: utter_explain_service_relocation
+  - action: utter_propose_options_after_answer

@@ -1,0 +1,307 @@
+version: "3.1"
+
+intents:
+  # --- INTENTS GENERALES ---
+  - greet
+  - goodbye
+  - return_to_main_menu
+
+  # --- INTENTS DE SOPORTE TÉCNICO ---
+  - select_report_issue
+  - select_no_internet
+  - select_navigation_slow
+  - select_modem_lights_yes
+  - select_modem_lights_no
+  - select_pon_light_fixed
+  - select_pon_light_blinking
+  - select_pon_light_off
+  - select_internet_light_off
+  - select_internet_light_green
+  - select_navigation_still_bad
+
+  # --- INTENTS DE PLANES Y PRODUCTOS ---
+  - select_know_plans
+  - select_plan_hogar
+  - select_plan_avanzado
+  - select_plan_premium
+  - select_plan_emprendedor
+  - ask_plan_prices
+  - ask_recommend_plan_business
+  - ask_what_is_dedicated_megas
+  - ask_recommend_plan_gaming
+  - ask_what_is_lookout
+  - select_contact_advisor
+
+  # --- INTENTS DE CARTERA Y PAGOS ---
+  - select_cartera
+  - select_payment_date
+  - select_cutoff_date
+  - select_payment_methods
+  - select_method_supergiros
+  - select_method_efecty
+  - select_method_pse
+  - select_discounts
+  - ask_payment_methods_general
+  - ask_payment_convenio
+  - ask_payment_data
+
+  # --- INTENTS DE CONTRATO Y PROCEDIMIENTOS ---
+  - select_change_password
+  - ask_contract_renewal
+  - ask_terminate_contract
+  - ask_silencio_administrativo
+  - ask_contract_cession
+  - ask_installation_delay
+  - ask_equipment_return
+  - ask_how_to_speed_test
+  - ask_service_relocation
+  
+  # --- INTENTS DEL MENÚ FAQ ---
+  - select_faq
+  - select_faq_office_hours
+  - select_faq_office_location
+
+responses:
+  # --- RESPUESTAS GENERALES ---
+  utter_greet:
+    - text: "¡Hola! Soy Wendy, tu asistente virtual de RoyalNet. Estoy aquí para ayudarte. ¿Qué te gustaría consultar hoy?"
+  
+  utter_main_menu:
+    - text: "Con gusto. Estas son las opciones principales:"
+      buttons:
+      - title: "1. Reportar una novedad"
+        payload: /select_report_issue
+      - title: "2. Conocer nuestros planes"
+        payload: /select_know_plans
+      - title: "3. Consultas de cartera"
+        payload: /select_cartera
+      - title: "4. Cambiar clave del WiFi"
+        payload: /select_change_password
+      - title: "5. Preguntas frecuentes"
+        payload: /select_faq
+      - title: "6. Terminar"
+        payload: /goodbye
+
+  utter_propose_options_after_answer:
+    - text: "¿Hay algo más en lo que pueda ayudarte?"
+      buttons:
+      - title: "Volver al menú principal"
+        payload: /return_to_main_menu
+      - title: "Terminar"
+        payload: /goodbye
+  
+  utter_goodbye:
+    - text: "Ha sido un placer ayudarte. ¡Gracias por confiar en RoyalNet! Que tengas un excelente día."
+
+  # --- FLUIDO 1: REPORTE DE NOVEDAD ---
+  utter_issue_submenu:
+    - text: "Entiendo, lamento que estés presentando una novedad. No te preocupes, vamos a revisar qué sucede. ¿Cuál es el problema principal?"
+      buttons:
+      - title: "No tengo internet"
+        payload: /select_no_internet
+      - title: "El internet está lento o se corta"
+        payload: /select_navigation_slow
+
+  utter_ask_modem_lights:
+    - text: "Claro que sí. Para saber cómo ayudarte mejor, lo primero es mirar el módem (el equipo de RoyalNet). ¿Ves alguna luz encendida en él?"
+      buttons:
+      - title: "Sí, tiene luces encendidas"
+        payload: /select_modem_lights_yes
+      - title: "No, está totalmente apagado"
+        payload: /select_modem_lights_no
+
+  utter_solution_modem_off:
+    - text: "Vale, si está apagado, lo más probable es que sea un tema de energía. A veces el cable se afloja un poquito.\n\n1.  **Verifica** que el cable de corriente esté bien conectado tanto al módem como a la toma de la pared.\n2.  Si puedes, **pruébalo** en otro enchufe.\n\nSi después de esto sigue sin encender, lo mejor es que un técnico lo revise. Comunícate con nuestro soporte al **305 450 9450** para reportar que el equipo no enciende."
+
+  utter_ask_pon_los_light:
+    - text: "Perfecto. Ahora, busquemos una luz muy importante que suele decir **PON** o **LOS**. ¿De qué color está y cómo se comporta?"
+      buttons:
+      - title: "Está fija y en verde"
+        payload: /select_pon_light_fixed
+      - title: "Está parpadeando o en rojo"
+        payload: /select_pon_light_blinking
+      - title: "Está apagada"
+        payload: /select_pon_light_off
+  
+  utter_solution_pon_blinking:
+    - text: "¡Gracias por revisarlo! Que la luz PON parpadee o esté roja significa que la señal de fibra óptica no está llegando correctamente a tu hogar. Esto requiere la revisión de un técnico especializado.\n\nPor favor, contacta a nuestro equipo de soporte al **305 450 9450** e indícales que 'la luz PON está en falla'. Ellos se encargarán de todo."
+
+  utter_solution_pon_off:
+    - text: "Entendido. Si el módem está encendido pero la luz PON está apagada, es posible que el cable de fibra esté desconectado o dañado. **Revisa con mucho cuidado** que el cable delgado que entra al módem esté bien puesto. Si lo ves bien pero la luz sigue apagada, necesitamos que un técnico lo revise. Llama a soporte al **305 450 9450**."
+
+  utter_ask_internet_light:
+    - text: "¡Excelente! Vamos bien. Ahora, ¿cómo está la luz que dice **Internet** o que tiene el símbolo de un mundo?"
+      buttons:
+      - title: "Está apagada o en rojo"
+        payload: /select_internet_light_off
+      - title: "Está encendida en verde"
+        payload: /select_internet_light_green
+
+  utter_solution_internet_off:
+    - text: "Comprendo. Si la luz PON está bien pero la de Internet no, es probable que el equipo haya perdido su configuración. Esto se suele solucionar de forma remota. Por favor, comunícate con nuestro equipo de soporte al **305 450 9450** para que restablezcan tu servicio."
+
+  utter_ask_navigation_status_after_lights:
+    - text: "¡Qué bien! Todas las luces principales están correctas. Si aún así no tienes internet, probemos con la solución más efectiva:\n\n1.  **Desconecta** el módem de la energía.\n2.  Espera **30 segundos**.\n3.  Vuelve a **conectarlo**.\n\nEspera unos 2 minutos a que se estabilice por completo. ¿Funcionó?"
+      buttons:
+      - title: "Sí, ¡ya tengo internet!"
+        payload: /return_to_main_menu
+      - title: "No, sigo sin poder navegar"
+        payload: /select_navigation_still_bad
+
+  utter_solution_navigation_still_bad:
+    - text: "No te preocupes. Si el reinicio no funcionó, necesitamos revisar más a fondo. Lo ideal es que nuestro equipo de soporte técnico revise tu conexión en tiempo real.\n\nPor favor, contáctalos al **305 450 9450**. Ya hiciste la primera prueba, así que podrán ayudarte más rápido."
+
+  utter_solution_slow_navigation:
+    - text: "Entiendo, un internet lento es muy frustrante. A veces, un reinicio rápido lo soluciona. Te sugiero desconectar el módem de la corriente por 30 segundos y volverlo a conectar.\n\nSi el problema persiste, lo mejor es que llames a nuestro soporte al **305 450 9450** para que realicen un diagnóstico detallado de tu velocidad."
+
+  # --- FLUIDO 2: PLANES Y PRODUCTOS ---
+  utter_plans_menu:
+    - text: "¡Claro que sí! Tenemos planes pensados para cada necesidad. ¿Sobre cuál te gustaría saber más?"
+      buttons:
+      - title: "Plan Hogar (100 Megas)"
+        payload: /select_plan_hogar
+      - title: "Plan Avanzado (200 Megas)"
+        payload: /select_plan_avanzado
+      - title: "Plan Premium (300 Megas + Look-Out)"
+        payload: /select_plan_premium
+      - title: "Plan Emprendedor (300 Megas)"
+        payload: /select_plan_emprendedor
+
+  utter_explain_plan_hogar:
+    - text: "El Plan Hogar es ideal para el día a día. Te ofrece 100 MEGAS de velocidad para que puedas disfrutar de tus redes sociales, ver series y películas en streaming y hacer descargas sin problemas. Es la conexión confiable que tu familia necesita."
+  
+  utter_explain_plan_avanzado:
+    - text: "Nuestro Plan Avanzado te da 200 MEGAS de velocidad. Es perfecto si trabajas desde casa o tienes varias personas conectadas al mismo tiempo. Garantiza videollamadas fluidas, streaming eficiente y mayor estabilidad para todas tus actividades."
+
+  utter_explain_plan_premium:
+    - text: "El Plan Premium es nuestra opción más completa. Incluye 300 MEGAS de velocidad para que disfrutes de videos en 4K y juegos online sin interrupciones. Además, te damos acceso a nuestro sistema de seguridad inteligente Look-Out. Es ideal para creadores de contenido y hogares con alta demanda de internet."
+
+  utter_explain_plan_emprendedor:
+    - text: "¡Pensamos en los que hacen crecer sus ideas! El Plan Emprendedor te da 300 MEGAS con un canal prioritario, que asegura máxima estabilidad incluso en horas pico. Además, incluye atención prioritaria en soporte. Es la conexión que tu negocio necesita para no detenerse."
+  
+  utter_propose_contact_advisor:
+    - text: "Si te interesa contratar alguno de nuestros planes o tienes más dudas, un asesor comercial puede ayudarte."
+      buttons:
+      - title: "Contactar a un asesor"
+        payload: /select_contact_advisor
+      - title: "Volver al menú principal"
+        payload: /return_to_main_menu
+      - title: "Terminar"
+        payload: /goodbye
+  
+  utter_contact_advisor_info:
+    - text: "¡Excelente decisión! Para que un asesor te contacte, por favor escríbenos a nuestra línea de atención **305 450 9450**. Allí tomarán tus datos para ofrecerte una atención personalizada."
+  
+  utter_answer_plan_prices:
+    - text: "Entiendo perfectamente que quieras saber los precios. Como las tarifas y promociones pueden actualizarse, no tengo acceso a los valores exactos para no darte información incorrecta. Lo mejor es que te comuniques con uno de nuestros asesores comerciales al **305 450 9450**. Ellos te darán la información más reciente y te ayudarán a elegir la mejor opción."
+
+  utter_recommend_plan_business:
+    - text: "¡Claro que sí! Pensamos especialmente en los negocios. Te recomiendo nuestro **Plan Emprendedor**. Te ofrece 300 megas con un 'canal prioritario', que es como tener una autopista exclusiva para tu negocio, garantizando máxima estabilidad incluso en horas de alta demanda. Además, incluye atención prioritaria en soporte. Es la conexión que necesitas para que nada detenga tu crecimiento."
+
+  utter_explain_dedicated_megas:
+    - text: "¡Excelente pregunta! Imagina que el internet es una gran avenida. En horas pico, hay mucho tráfico y todo puede ir más lento. Las 'megas dedicadas' o el 'canal prioritario' que ofrecemos en nuestro Plan Emprendedor es como tener tu propio carril expreso en esa avenida. Tu conexión no compite con la de los demás, lo que te garantiza una velocidad y estabilidad mucho mayor, ideal para videollamadas, transacciones en línea y trabajo pesado."
+
+  utter_recommend_plan_gaming:
+    - text: "¡Totalmente! Si lo tuyo son los videojuegos, necesitas velocidad y, sobre todo, una baja latencia (ping). Te recomiendo sin dudarlo nuestro **Plan Premium**. Con 300 megas de velocidad, tendrás descargas ultra rápidas y, lo más importante, la estabilidad de la fibra óptica para que disfrutes de tus partidas online sin lag ni interrupciones. ¡Prepárate para jugar a otro nivel!"
+  
+  utter_explain_what_is_lookout:
+    - text: "¡Claro que sí! Me encanta hablar de Look-Out, es una de nuestras mejores soluciones. \n\nLook-Out es nuestro sistema de vigilancia inteligente en la nube. Piensa en ello como tener un vigilante digital para tu hogar o negocio, accesible desde tu celular. Te permite monitorear en tiempo real, almacenar video de forma segura y recibir alertas, todo sin necesidad de equipos físicos costosos.\n\nY aquí viene lo mejor: el servicio de Look-Out es un beneficio **exclusivo y totalmente gratuito** que incluimos con nuestro **Plan Premium**. Es la forma perfecta de añadir tranquilidad a la mejor conexión de internet."
+
+  # --- FLUIDO 3: CARTERA Y PAGOS ---
+  utter_cartera_menu:
+    - text: "Claro, aquí puedes consultar la información de cartera. ¿Qué necesitas saber?"
+      buttons:
+        - title: "Mi fecha de pago"
+          payload: /select_payment_date
+        - title: "Fecha de corte del servicio"
+          payload: /select_cutoff_date
+        - title: "Métodos de pago"
+          payload: /select_payment_methods
+        - title: "Compensación por fallas"
+          payload: /select_discounts
+
+  utter_answer_payment_date:
+    - text: "Tu fecha de pago oportuno es el día **25 de cada mes**. Recuerda que mantener tus pagos al día evita suspensiones en el servicio."
+  
+  utter_answer_cutoff_date:
+    - text: "Las suspensiones del servicio por falta de pago se programan a partir del **día 1 de cada mes**. Si esto ocurre, se generará un cargo por reconexión de $10.000 COP en tu siguiente factura. ¡Evita costos adicionales pagando a tiempo!"
+  
+  utter_ask_payment_methods:
+    - text: "Tenemos varias opciones para facilitar tus pagos. Puedes pagar en puntos físicos como SuperGIROS y Efecty, de forma electrónica a través de PSE, o directamente en nuestras oficinas. ¿Te explico alguna en especial?"
+      buttons:
+      - title: "SuperGIROS"
+        payload: /select_method_supergiros
+      - title: "Efecty"
+        payload: /select_method_efecty
+      - title: "PSE"
+        payload: /select_method_pse
+
+  utter_answer_supergiros:
+    - text: "Para pagar en SuperGIROS, solo debes acercarte a un punto de servicio e indicar el número de convenio **10965**. Como referencia de pago, te pedirán el número de cédula del titular del servicio."
+
+  utter_answer_efecty:
+    - text: "Para pagar en Efecty, el número de convenio es el **111495**. Al igual que en otros puntos, la referencia de pago es el número de cédula del titular. ¡Así de fácil!"
+  
+  utter_answer_pse:
+    - text: "Pagar por PSE es muy sencillo. Ingresa a nuestro portal de pagos en https://www.psepagos.co/PSEHostingUI/ShowTicketOffice.aspx?ID=12524, digita el número de cédula del titular y sigue los pasos. Recuerda tener una cuenta activa en PSE."
+
+  utter_answer_discounts:
+    - text: "Entiendo tu pregunta. Según la regulación, tienes derecho a una compensación si el servicio está indisponible por un tiempo prolongado y no te damos solución. Nuestro principal objetivo siempre será restablecer tu conexión lo antes posible. Si presentas una falla, por favor repórtala de inmediato a nuestra línea de soporte **305 450 9450** para atenderte."
+
+  utter_ask_payment_methods_general:
+    - text: "¡Claro! Te explico las opciones que tienes para pagar tu factura. Puedes hacerlo en puntos físicos a través de SuperGIROS (convenio 10965) o Efecty (convenio 111495), y también de forma digital por PSE. ¿Te gustaría que te detalle alguna en especial?"
+  
+  utter_explain_payment_convenio_efecty:
+    - text: "Con gusto. Para pagar en cualquier punto Efecty, solo necesitas indicar que vas a hacer un pago para Royalnet bajo el convenio número **111495**. Luego, como referencia de pago, debes dar el número de cédula del titular del servicio. ¡Eso es todo!"
+
+  utter_explain_payment_convenio_supergiros:
+    - text: "¡Claro! El número de convenio para pagar tu servicio de Royalnet en SuperGIROS es el **10965**. No olvides que te pedirán una referencia de pago, que siempre es el número de cédula del titular de la cuenta."
+  
+  utter_explain_payment_data:
+     - text: "Es muy sencillo. Para pagar en cualquier punto físico como Efecty o SuperGIROS, solo necesitas dos cosas: el número del convenio y el número de cédula del titular del servicio como referencia de pago. ¡Con eso es suficiente!"
+
+  # --- FLUIDO 4: CONTRATO, PROCEDIMIENTOS Y FAQ ---
+  utter_answer_change_password:
+    - text: "¡Claro! Mantener tu contraseña segura es muy importante. Para realizar el cambio, por favor envíanos el número de cédula del titular, el nombre de la red WiFi y la nueva clave, y compártenosla al 3054509450. Debes ser paciente en este proceso."
+  
+  utter_faq_menu:
+    - text: "¡Con gusto! He reunido aquí las preguntas más comunes para ayudarte. ¿Qué te gustaría saber?"
+      buttons:
+      - title: "¿Cuál es su horario?"
+        payload: /select_faq_office_hours
+      - title: "¿Dónde están ubicados?"
+        payload: /select_faq_office_location
+
+  utter_answer_faq_office_hours:
+    - text: "Nuestro horario de atención en oficinas es:\n- **Lunes a Viernes:** de 8:00 a.m. a 12:00 p.m. y de 2:00 p.m. a 6:00 p.m.\n- **Sábados:** de 8:00 a.m. a 12:00 p.m."
+  
+  utter_answer_faq_office_location: 
+    - text: "Nos encuentras en Cúcuta en dos sedes:\n- **Barrio San Luis:** Avenida 5 # 8–68\n- **Barrio Aeropuerto:** Calle 12 # 2–90\n¡Será un placer atenderte!"
+
+  utter_explain_contract_renewal:
+    - text: "¡Buena pregunta! Nuestro contrato está diseñado para tu comodidad. Una vez cumplido el plazo inicial, se renueva automáticamente por un período igual para que no tengas que preocuparte por nada y tu servicio no se interrumpa."
+
+  utter_explain_terminate_contract:
+    - text: "Entiendo. Puedes terminar tu contrato en cualquier momento. Si no tienes una cláusula de permanencia activa por algún descuento o financiamiento, no hay ninguna penalidad. Solo debes presentar la solicitud con al menos 3 días hábiles de anticipación a tu fecha de corte (el día 25 de cada mes). Es muy importante que al finalizar devuelvas los equipos instalados para evitar que se generen cargos adicionales en tu factura."
+
+  utter_explain_silencio_administrativo:
+    - text: "¡Claro! El 'silencio administrativo positivo' es un derecho que te protege. Significa que si presentas una PQR (petición, queja o recurso) y nosotros no te damos una respuesta dentro del plazo legal, tu solicitud se considera automáticamente aceptada a tu favor. Es una garantía de que tus peticiones siempre serán escuchadas."
+
+  utter_explain_contract_cession:
+    - text: "Sí, ¡por supuesto! Puedes ceder tu contrato a otra persona. Solo debes presentar una solicitud por escrito en nuestros canales de atención, junto con la aceptación de la persona que recibirá el servicio. Nosotros analizaremos la solicitud y te daremos respuesta en un plazo de 15 días hábiles. Una vez aprobada, quedas libre de toda responsabilidad."
+
+  utter_explain_installation_delay:
+    - text: "Lamento mucho la demora. Nuestro plazo máximo de instalación es de 15 días hábiles. Si este tiempo ya pasó y aún no te hemos instalado el servicio, tienes todo el derecho a solicitar la terminación del contrato y la devolución de cualquier dinero que hayas pagado. Por favor, comunícate con nuestra línea de atención **305 450 9450** para gestionar tu caso de inmediato."
+
+  utter_explain_equipment_return:
+    - text: "Esa es una pregunta muy importante. Al terminar tu contrato, debes devolver los equipos que te instalamos (como el módem/ONU). Si no se devuelven, estos serán facturados a tu cuenta. Nuestro equipo coordinará contigo la recolección para que sea un proceso sencillo."
+  
+  utter_explain_how_to_speed_test:
+    - text: "¡Claro! Medir tu velocidad es una excelente forma de verificar la conexión. Para un resultado más preciso, te doy un consejo de amiga: conecta tu computador directamente al módem con un cable de red (el amarillo o azul). Luego, cierra otras aplicaciones que usen internet y entra a una página como Speedtest.net. Así obtendrás la medición más real posible."
+
+  utter_explain_service_relocation:
+    - text: "¡Por supuesto! Si te mudas, puedes solicitar el traslado de tu servicio. Nuestro equipo verificará primero que tengamos cobertura y viabilidad técnica en tu nueva dirección. Si todo está en orden, agendaremos la visita en un plazo de 3 días hábiles. Si no es posible hacer el traslado, no te preocupes, tienes la opción de ceder o terminar tu contrato. Para iniciar el proceso, solo debes comunicarte con nuestra línea de atención **305 450 9450**."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

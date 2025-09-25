@@ -1,0 +1,28 @@
+%[preguntar_metodos_pago]
+    Cómo puedo pagar mi factura?
+    Qué datos necesito para pagar en @[punto_pago]?
+    Cuál es el convenio para pagar en @[punto_pago]?
+    Puedo pagar por @[metodo_pago]?
+
+@[punto_pago]
+    Efecty
+    SuperGIROS
+@[metodo_pago]
+    Nequi
+    PSE
+
+%[preguntar_costo_inesperado]
+    Por qué mi factura llegó más cara?
+    No veo mi descuento en la factura
+
+%[preguntar_sobre_corte_y_pago]
+    El servicio fue cortado pero ya pagué
+    Cuánto cuesta la reconexión?
+
+%[preguntar_sobre_descuentos]
+    Cómo aplico mi descuento?
+    Tuve una falla, cómo me compensan?
+
+%[preguntar_reporte_datacredito]
+    Me reportaron en DataCrédito, qué hago?
+    Por qué sigo reportado si ya pagué?

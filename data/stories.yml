@@ -1,0 +1,11 @@
+# Tu archivo stories.yml
+version: "3.1"
+
+stories:
+- story: Saludo y despedida rapida
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_main_menu
+  - intent: goodbye
+  - action: utter_goodbye

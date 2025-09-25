@@ -1,0 +1,278 @@
+version: "3.1"
+
+nlu:
+# --- INTENTS GENERALES ---
+- intent: greet
+  examples: |
+    - hola
+    - buenas
+    - buenos dias
+    - que tal
+    - hey
+    - buenas tardes
+    - hola wendy
+
+- intent: goodbye
+  examples: |
+    - adios
+    - chao
+    - hasta luego
+    - terminar
+    - eso es todo
+    - gracias chao
+
+- intent: return_to_main_menu
+  examples: |
+    - volver al inicio
+    - menú principal
+    - quiero ver las otras opciones
+    - volver
+
+# --- INTENTS DE SOPORTE TÉCNICO ---
+- intent: select_report_issue
+  examples: |
+    - quiero reportar un problema
+    - tengo una falla
+    - mi internet no funciona
+    - reportar novedad
+
+- intent: select_no_internet
+  examples: |
+    - No tengo internet
+    - se me cayó el internet
+    - sin conexión
+    - no puedo navegar
+    - el internet no funciona
+    - la conexión está caída
+    - no tengo red
+    - el servicio de wifi está caído
+    - no hay internet en mi computador
+    - no funciona el internet en mi celular
+    - perdí la conexión
+
+- intent: select_navigation_slow
+  examples: |
+    - El internet está lento
+    - Mi internet está muy lento
+    - la conexión está intermitente
+    - el servicio de wifi va y viene
+    - mi red está superlenta en el celular
+    - por qué el internet está tan lento
+    - tengo intermitencia en el servicio
+    - navego muy despacio
+    - la conexión es inestable
+    - ¿Cómo reinicio el módem?
+    - ¿Puedo reiniciar el equipo?
+    - Me dijeron que reiniciara el router
+
+# --- INTENTS DE PLANES Y PRODUCTOS ---
+- intent: select_know_plans
+  examples: |
+    - quiero conocer los planes
+    - qué planes tienen
+    - información de planes
+    - cuáles son sus ofertas de internet
+    - muéstrame los planes
+
+- intent: ask_plan_prices
+  examples: |
+    - ¿Me gustaría saber los precios?
+    - ¿Cuánto cuestan los planes?
+    - ¿Qué valor tiene el plan de 100 megas?
+    - lista de precios
+
+- intent: ask_recommend_plan_business
+  examples: |
+    - ¿Ofrecen planes para empresas?
+    - ¿Qué plan tienen para un negocio?
+    - Necesito internet para mi emprendimiento
+    - ¿Cuál es el plan para emprendedores?
+
+- intent: ask_what_is_dedicated_megas
+  examples: |
+    - ¿Qué son las megas dedicadas?
+    - ¿A qué se refieren con canal prioritario?
+    - ¿Qué significa internet dedicado?
+
+- intent: ask_recommend_plan_gaming
+  examples: |
+    - ¿Qué plan me recomiendan para jugar?
+    - ¿Cuál es el mejor plan para videojuegos online?
+    - Necesito un plan con buen ping para gaming
+
+- intent: ask_what_is_lookout
+  examples: |
+    - ¿Qué es Look-Out?
+    - Háblame del servicio de cámaras
+    - ¿Cómo funciona el sistema de monitoreo?
+    - ¿La cámara viene incluida?
+    - ¿Qué planes tienen cámaras?
+    - Quiero saber más sobre Look-Out
+    - ¿Qué es eso de la vigilancia en la nube?
+    - ¿Cómo funciona la seguridad inteligente?
+
+# --- INTENTS DE CARTERA Y PAGOS ---
+- intent: select_cartera
+  examples: |
+    - quiero saber sobre mi factura
+    - cartera
+    - pagos
+    - información de pago
+
+- intent: ask_payment_methods_general
+  examples: |
+    - ¿Cómo puedo pagar mi factura?
+    - ¿Cuáles son las formas de pago?
+    - ¿Dónde puedo pagar?
+    - Opciones para el pago
+
+- intent: ask_payment_convenio
+  examples: |
+    - ¿Cuál es el convenio para pagar en [Efecty](punto_pago)?
+    - Dame el número de convenio de [SuperGIROS](punto_pago)
+    - Necesito el convenio de [PSE](metodo_pago)
+    - Quiero pagar en [Efecty](punto_pago), ¿cuál es el convenio?
+
+- intent: ask_payment_data
+  examples: |
+    - ¿Qué datos necesito para pagar en [SuperGIROS](punto_pago)?
+    - ¿Qué me piden para pagar en [Efecty](punto_pago)?
+    - Para pagar, ¿qué información debo dar?
+
+# --- INTENTS DE CONTRATO Y PROCEDIMIENTOS ---
+- intent: ask_contract_renewal
+  examples: |
+    - ¿Qué pasa cuando se cumple el año de contrato?
+    - ¿Mi contrato se renueva solo?
+    - ¿Tengo que renovar el contrato cada año?
+    - Se me va a vencer el contrato, ¿qué hago?
+
+- intent: ask_terminate_contract
+  examples: |
+    - ¿Cómo cancelo mi contrato?
+    - Quiero terminar el servicio
+    - ¿Cuánto tengo que pagar si cancelo el contrato antes de tiempo?
+    - ¿Hay alguna multa por retirarme?
+    - Requisitos para la cancelación
+    - ¿Cuál es el proceso para cancelar el servicio?
+
+- intent: ask_silencio_administrativo
+  examples: |
+    - ¿Qué significa el silencio administrativo positivo?
+    - ¿Qué pasa si no me responden un PQR a tiempo?
+    - explícame el silencio administrativo
+
+- intent: ask_contract_cession
+  examples: |
+    - ¿Le puedo pasar mi contrato a otra persona?
+    - Quiero ceder mi servicio a alguien más
+    - ¿Cómo se hace la cesión del contrato?
+
+- intent: ask_installation_delay
+  examples: |
+    - No me han instalado el internet y ya pasaron los 15 días
+    - ¿Qué pasa si se demoran en instalar?
+    - ¿Cuánto tiempo tienen para instalar el servicio?
+
+- intent: ask_equipment_return
+  examples: |
+    - ¿Qué hago con el módem si cancelo el servicio?
+    - ¿Tengo que devolver los equipos?
+    - ¿Me cobran el módem si me retiro?
+
+- intent: select_change_password
+  examples: |
+    - quiero cambiar la clave del wifi
+    - como cambio mi contraseña
+    - cambiar la clave
+    - Quiero cambiar la contraseña del Wi-Fi
+
+- intent: ask_how_to_speed_test
+  examples: |
+    - ¿Cómo mido la velocidad de mi internet?
+    - ¿Cómo puedo hacer un test de velocidad?
+    - ¿Cuál es la forma correcta de medir mi conexión?
+    - dime cómo hacer un speed test
+
+- intent: ask_service_relocation
+  examples: |
+    - ¿Cómo traslado el servicio si me mudo?
+    - Me voy a mudar, ¿puedo llevarme el internet?
+    - Quiero solicitar un traslado de domicilio
+    - ¿Qué hago si cambio de casa?
+
+# --- INTENTS PARA BOTONES Y PAYLOADS ---
+- intent: select_contact_advisor
+  examples: |
+    - Contactar un asesor
+    - Quiero hablar con un asesor comercial
+
+- intent: select_cutoff_date
+  examples: |
+    - Cuál es la fecha de corte?
+    - Cuando cortan el servicio?
+
+- intent: select_discounts
+  examples: |
+    - Y los descuentos?
+    - Sobre los descuentos
+
+- intent: select_faq
+  examples: |
+    - Preguntas frecuentes
+    - Tengo otra pregunta
+
+- intent: select_faq_office_hours
+  examples: |
+    - horario de oficinas
+    - a que hora abren
+
+- intent: select_faq_office_location
+  examples: |
+    - donde estan ubicados
+    - ubicacion
+
+- intent: select_method_efecty
+  examples: |
+    - Efecty
+    - Cómo pago por Efecty
+
+- intent: select_method_pse
+  examples: |
+    - PSE
+    - Cómo pago por PSE
+
+- intent: select_method_supergiros
+  examples: |
+    - SuperGIROS
+    - Cómo pago por SuperGIROS
+
+- intent: select_payment_date
+  examples: |
+    - Y mi fecha de pago?
+    - Cuando pago?
+
+- intent: select_payment_methods
+  examples: |
+    - Cuales son sus metodos de pago?
+    - Como puedo pagar?
+
+- intent: select_plan_avanzado
+  examples: |
+    - Plan Avanzado
+    - Información del plan avanzado
+
+- intent: select_plan_emprendedor
+  examples: |
+    - Plan Emprendedor
+    - Información del plan emprendedor
+
+- intent: select_plan_hogar
+  examples: |
+    - Plan Hogar
+    - Información del plan hogar
+
+- intent: select_plan_premium
+  examples: |
+    - Plan Premium
+    - Información del plan premium
